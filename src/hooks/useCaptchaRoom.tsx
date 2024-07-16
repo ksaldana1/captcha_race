@@ -2,7 +2,7 @@ import usePartySocket from "partysocket/react";
 import { useState } from "react";
 import { GameState, Action } from "../../game/logic";
 
-import { PARTY_HOST } from "../../party";
+const PARTY_HOST = "https://test-pk.ksaldana1.partykit.dev";
 
 export const useGameRoom = (username: string, roomId: string) => {
   const [gameState, setGameState] = useState<GameState | null>(null);
