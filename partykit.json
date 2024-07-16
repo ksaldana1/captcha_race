@@ -1,0 +1,5 @@
+{
+  "name": "captcha-race",
+  "main": "party/index.ts",
+  "parties": {}
+}
