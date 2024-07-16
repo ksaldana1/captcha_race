@@ -24,6 +24,7 @@ export interface GameState {
   // currently the base64 string we are playing against
   captcha: string;
   winner?: string;
+  captcha_type: "audio" | "image";
   users: User[];
   scoreboard: Record<string, number>;
   log: {
@@ -34,6 +35,7 @@ export interface GameState {
 
 export const initialGame = (captcha: string): GameState => ({
   captcha,
+  captcha_type: "image",
   scoreboard: {},
   users: [],
   log: addLog("Game Created!", []),

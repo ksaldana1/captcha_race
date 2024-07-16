@@ -33,7 +33,11 @@ function App() {
           });
         }}
       >
-        <img src={gameState?.captcha} />
+        {gameState?.captcha_type === "image" ? (
+          <img src={gameState?.captcha} />
+        ) : (
+          <audio controls src={gameState?.captcha} />
+        )}
         <div className="flex flex-col items-center">
           <input
             className="border border-black my-2 w-96"
