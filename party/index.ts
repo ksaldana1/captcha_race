@@ -10,8 +10,9 @@ import {
 
 export const CONNECTION_PARTY_NAME = "rooms";
 export const CONNECTIONS_ROOM_ID = "active-connections";
-export const PARTY_HOST =
-  "https://captcha-race.ksaldana1.partykit.dev/" || "http://localhost:1999";
+export const PARTY_HOST = "http://localhost:1999";
+
+const CAPTCHA_GENERATOR_HOST = "https://captcha-server.fly.dev";
 
 export default class Server implements Party.Server {
   // @ts-ignore
@@ -27,7 +28,7 @@ export default class Server implements Party.Server {
   }
 
   async create() {
-    const response = await fetch("http://localhost:8080");
+    const response = await fetch(CAPTCHA_GENERATOR_HOST);
     const { base64, value } = (await response.json()) as {
       value: string;
       base64: string;
@@ -36,6 +37,7 @@ export default class Server implements Party.Server {
     this.base64Captcha = base64;
 
     this.gameState = initialGame(base64);
+    this.room.broadcast(JSON.stringify(this.gameState));
   }
 
   async onConnect(connection: Party.Connection, _ctx: Party.ConnectionContext) {

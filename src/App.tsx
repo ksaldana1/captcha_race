@@ -4,8 +4,14 @@ import "./App.css";
 import { useGameRoom } from "./hooks/useCaptchaRoom";
 
 function App() {
-  const { gameState, dispatch } = useGameRoom("kevin", "test");
+  const url = new URL(window.location.href);
+  const [username, room] = [
+    url.searchParams.get("username") ?? "",
+    url.searchParams.get("room") ?? "",
+  ];
+  const { gameState, dispatch } = useGameRoom(username, room);
   const [guess, setGuess] = useState("");
+  console.log(url.searchParams.get("username"));
   return (
     <div className="h-full flex flex-col items-center justify-center gap-4">
       <img src={gameState?.captcha} />

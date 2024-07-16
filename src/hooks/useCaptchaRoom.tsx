@@ -5,7 +5,6 @@ import { PARTY_HOST } from "../../party";
 
 export const useGameRoom = (username: string, roomId: string) => {
   const [gameState, setGameState] = useState<GameState | null>(null);
-  console.log(PARTY_HOST);
 
   const socket = usePartySocket({
     host: PARTY_HOST,
