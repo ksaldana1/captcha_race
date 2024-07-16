@@ -8,11 +8,7 @@ import {
   initialGame,
 } from "../game/logic";
 
-export const CONNECTION_PARTY_NAME = "rooms";
-export const CONNECTIONS_ROOM_ID = "active-connections";
-// export const PARTY_HOST =
-//   "captcha-race.ksaldana1.partykit.dev" || "http://localhost:1999";
-export const PARTY_HOST = "http://localhost:1999";
+export const PARTY_HOST = "https://test-pk.ksaldana1.partykit.dev/";
 
 const CAPTCHA_GENERATOR_HOST = "http://captcha-server.fly.dev";
 
