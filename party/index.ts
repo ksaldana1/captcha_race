@@ -50,6 +50,7 @@ export default class Server implements Party.Server {
       },
       this.gameState
     );
+    this.room.broadcast(JSON.stringify(this.gameState));
   }
 
   async onClose(connection: Party.Connection) {
@@ -75,8 +76,16 @@ export default class Server implements Party.Server {
         action
       )}`
     );
-    this.gameState = gameUpdater(action, this.gameState);
-    this.room.broadcast(JSON.stringify(this.gameState));
+
+    if (action.type === "GUESS") {
+      const isCorrect = action.payload.captcha.value === this.secret;
+      if (isCorrect) {
+        this.create();
+      }
+    } else {
+      this.gameState = gameUpdater(action, this.gameState);
+      this.room.broadcast(JSON.stringify(this.gameState));
+    }
   }
 }
 
