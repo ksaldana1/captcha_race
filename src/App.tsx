@@ -9,9 +9,14 @@ function App() {
     url.searchParams.get("username") ?? "",
     url.searchParams.get("room") ?? "",
   ];
+
+  if (!username && !room) {
+    return null;
+  }
+
   const { gameState, dispatch } = useGameRoom(username, room);
   const [guess, setGuess] = useState("");
-  console.log(url.searchParams.get("username"));
+
   return (
     <div className="h-full flex flex-col items-center justify-center gap-4">
       <img src={gameState?.captcha} />

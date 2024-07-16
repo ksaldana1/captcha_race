@@ -23,6 +23,7 @@ export type DefaultAction = { type: "USER_ENTERED" } | { type: "USER_EXIT" };
 export interface GameState {
   // currently the base64 string we are playing against
   captcha: string;
+  winner?: string;
   users: User[];
   log: {
     dt: number;
@@ -36,11 +37,13 @@ export const initialGame = (captcha: string): GameState => ({
   log: addLog("Game Created!", []),
 });
 
-export type GameAction = {
-  type: "GUESS";
-  // todo what is the type of our captcha
-  payload: { captcha: { value: string } };
-};
+export type GameAction =
+  | {
+      type: "GUESS";
+      // todo what is the type of our captcha
+      payload: { captcha: { value: string } };
+    }
+  | { type: "DECLARE_WINNER"; payload: { user: string } };
 
 export const gameUpdater = (
   action: ServerAction,
@@ -65,6 +68,13 @@ export const gameUpdater = (
 
     case "GUESS": {
       return state;
+    }
+
+    case "DECLARE_WINNER": {
+      return {
+        ...state,
+        winner: action.payload.user,
+      };
     }
   }
 };

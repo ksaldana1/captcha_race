@@ -9,6 +9,7 @@ export const useGameRoom = (username: string, roomId: string) => {
   const socket = usePartySocket({
     host: PARTY_HOST,
     room: roomId,
+    party: "captcha",
     id: username,
     onMessage(event: MessageEvent<string>) {
       setGameState(JSON.parse(event.data));
