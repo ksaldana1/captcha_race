@@ -18,6 +18,7 @@ export default class Server implements Party.Server {
   // current Captcha secret as plain text value
   private secret: string = "";
   // base64 string to send to user
+  // @ts-ignore
   private base64Captcha: string = "";
 
   constructor(readonly room: Party.Room) {
@@ -66,7 +67,11 @@ export default class Server implements Party.Server {
       user: { id: sender.id },
       secret: this.secret,
     };
-    console.log(`Received action ${action.type} from user ${sender.id}`);
+    console.log(
+      `Received action ${action.type} from user ${sender.id}: ${JSON.stringify(
+        action
+      )}`
+    );
     this.gameState = gameUpdater(action, this.gameState);
     this.room.broadcast(JSON.stringify(this.gameState));
   }
