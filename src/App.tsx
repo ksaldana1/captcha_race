@@ -19,15 +19,10 @@ function App() {
 
   return (
     <div className="h-full flex flex-col items-center justify-center gap-4">
-      <img src={gameState?.captcha} />
-      <input
-        className="border border-black my-2"
-        value={guess}
-        onChange={(e) => setGuess(e.target.value)}
-      />
-      <button
-        className="border border-green-500 bg-green-500 text-white rounded w-28"
-        onClick={() =>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setGuess("");
           dispatch({
             type: "GUESS",
             payload: {
@@ -35,11 +30,25 @@ function App() {
                 value: guess,
               },
             },
-          })
-        }
+          });
+        }}
       >
-        Guess
-      </button>
+        <img src={gameState?.captcha} />
+        <div className="flex flex-col items-center">
+          <input
+            className="border border-black my-2 w-96"
+            value={guess}
+            onChange={(e) => setGuess(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="border border-green-500 bg-green-500 text-white rounded w-28"
+          >
+            Guess
+          </button>
+        </div>
+      </form>
+      {gameState?.winner && <h2>{gameState.winner} has won</h2>}
     </div>
   );
 }
