@@ -49,6 +49,15 @@ function App() {
         </div>
       </form>
       {gameState?.winner && <h2>{gameState.winner} has won</h2>}
+      <ol>
+        {Object.entries(gameState?.scoreboard ?? {}).map(([username, wins]) => {
+          return (
+            <li>
+              {username}: {wins}
+            </li>
+          );
+        })}
+      </ol>
     </div>
   );
 }

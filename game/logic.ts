@@ -25,6 +25,7 @@ export interface GameState {
   captcha: string;
   winner?: string;
   users: User[];
+  scoreboard: Record<string, number>;
   log: {
     dt: number;
     message: string;
@@ -33,6 +34,7 @@ export interface GameState {
 
 export const initialGame = (captcha: string): GameState => ({
   captcha,
+  scoreboard: {},
   users: [],
   log: addLog("Game Created!", []),
 });
