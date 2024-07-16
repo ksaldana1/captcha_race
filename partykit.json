@@ -1,7 +1,6 @@
 {
+  "$schema": "https://www.partykit.io/schema.json",
   "name": "captcha-race",
   "main": "party/index.ts",
-  "parties": {
-    "captcha": "party/captcha.ts"
-  }
+  "compatibilityDate": "2024-07-16"
 }

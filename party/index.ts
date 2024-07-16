@@ -10,10 +10,11 @@ import {
 
 export const CONNECTION_PARTY_NAME = "rooms";
 export const CONNECTIONS_ROOM_ID = "active-connections";
-export const PARTY_HOST =
-  "https://captcha-race.ksaldana1.partykit.dev" || "http://localhost:1999";
+// export const PARTY_HOST =
+//   "captcha-race.ksaldana1.partykit.dev" || "http://localhost:1999";
+export const PARTY_HOST = "http://localhost:1999";
 
-const CAPTCHA_GENERATOR_HOST = "https://captcha-server.fly.dev";
+const CAPTCHA_GENERATOR_HOST = "http://captcha-server.fly.dev";
 
 export default class Server implements Party.Server {
   // @ts-ignore

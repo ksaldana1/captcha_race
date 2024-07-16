@@ -1,6 +1,7 @@
 import usePartySocket from "partysocket/react";
 import { useState } from "react";
 import { GameState, Action } from "../../game/logic";
+
 import { PARTY_HOST } from "../../party";
 
 export const useGameRoom = (username: string, roomId: string) => {
@@ -9,7 +10,6 @@ export const useGameRoom = (username: string, roomId: string) => {
   const socket = usePartySocket({
     host: PARTY_HOST,
     room: roomId,
-    party: "captcha",
     id: username,
     onMessage(event: MessageEvent<string>) {
       setGameState(JSON.parse(event.data));
